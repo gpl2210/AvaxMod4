@@ -4,12 +4,12 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ControlOnAnger is ERC20, Ownable {
+contract ControlOnAnger is ERC20, Ownable(msg.sender) {
     mapping(address => bool) private ItemsRedeemed;
-    uint public constant Loot = 10* 10;
+    uint public constant val = 100;
 
     constructor() ERC20("ControlOnAnger", "COA") {
-        _mint(msg.sender, Loot);
+        _mint(msg.sender, val);
     }
 
     function mint(address acc, uint amo) public onlyOwner {
@@ -17,11 +17,11 @@ contract ControlOnAnger is ERC20, Ownable {
     }
 
     function redeemItem() public {
-        require(balanceOf(msg.sender) >= Loot, "Balance is insufficient");
+        require(balanceOf(msg.sender) >= val, "Balance is insufficient");
         require(!ItemsRedeemed[msg.sender], "Items are redeemed already");
 
         ItemsRedeemed[msg.sender] = true;
-        _burn(msg.sender, Loot);
+        _burn(msg.sender, val);
     }
 
     function burn(uint amo) public {
