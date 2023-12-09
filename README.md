@@ -25,7 +25,7 @@ This contract is licensed under the MIT License. See the LICENSE file for detail
 
 #### Item Redemption:
 
-- Users can redeem items using the `redeemItem` function.
+- Users can redeem items using the `redeemFunc` function.
 - A user needs to have a balance greater than or equal to the specified Loot amount to redeem items.
 - Once items are redeemed, the corresponding amount is burned from the user's balance.
 
@@ -43,7 +43,7 @@ This contract is licensed under the MIT License. See the LICENSE file for detail
 
 Mints additional tokens to the specified address. This function can only be executed by the contract owner.
 
-### `redeemItem() public`
+### `redeemFunc() public`
 
 Allows users to redeem items by burning a specified amount of tokens. The function checks if the user has sufficient balance and has not redeemed items before.
 
